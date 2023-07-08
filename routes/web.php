@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\PostsController;
+use App\Http\Controllers\Admin\ProjectsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Guests\PageController as GuestsPageController;
@@ -24,7 +25,8 @@ Route::middleware(['auth', 'verified'])
     ->prefix('admin')
     ->group(function () {
         Route::get('/', [AdminPageController::class, 'dashboard'])->name('dashboard');
-        Route::resource('posts', PostController::class);
+        Route::resource('posts', PostsController::class);
+        Route::resource('projects', ProjectsController::class);
     });
 
 Route::middleware('auth')

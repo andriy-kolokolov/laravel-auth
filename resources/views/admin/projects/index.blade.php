@@ -5,9 +5,9 @@
     <h1>Posts</h1>
 
     @if (session('delete_success'))
-        @php $post = session('delete_success') @endphp
+        @php $project = session('delete_success') @endphp
         <div class="alert alert-danger">
-            Post "{{ $post->title }}" was deleted.
+            Post "{{ $project->title }}" was deleted.
             {{-- <form
                 action="{{ route("admin.posts.restore", ['post' => $post]) }}"
                     method="post"
@@ -31,22 +31,24 @@
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Title</th>
-                <th scope="col">Image url</th>
+                <th scope="col">Description</th>
+                <th scope="col">Project url</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($posts as $post)
+            @foreach ($projects as $project)
                 <tr>
-                    <th scope="row">{{ $post->id }}</th>
-                    <td>{{ $post->title }}</td>
-                    <td>{{ $post->url_image }}</td>
+                    <th scope="row">{{ $project->id }}</th>
+                    <td>{{ $project->title }}</td>
+                    <td>{{ $project->description }}</td>
+                    <td>{{ $project->project_url }}</td>
                     <td>
-                        <a class="btn btn-primary" href="{{ route('admin.posts.show', ['post' => $post]) }}">View</a>
-                        <a class="btn btn-warning" href="{{ route('admin.posts.edit', ['post' => $post]) }}">Edit</a>
-                        <button type="button" class="btn btn-danger js-delete" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $post->id }}">
-                            Delete
-                        </button>
+{{--                        <a class="btn btn-primary" href="{{ route('admin.posts.show', ['post' => $post]) }}">View</a>--}}
+{{--                        <a class="btn btn-warning" href="{{ route('admin.posts.edit', ['post' => $post]) }}">Edit</a>--}}
+{{--                        <button type="button" class="btn btn-danger js-delete" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $post->id }}">--}}
+{{--                            Delete--}}
+{{--                        </button>--}}
                     </td>
                 </tr>
             @endforeach
@@ -67,7 +69,7 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
                     <form
                         action=""
-                        data-template="{{ route('admin.posts.destroy', ['post' => '*****']) }}"
+{{--                        data-template="{{ route('admin.posts.destroy', ['post' => '*****']) }}"--}}
                         method="post"
                         class="d-inline-block"
                         id="confirm-delete"
@@ -81,6 +83,6 @@
         </div>
     </div>
 
-    {{ $posts->links() }}
+    {{ $projects->links() }}
 
 @endsection

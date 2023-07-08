@@ -14,3 +14,14 @@ if (confirmDelete) {
         });
     })
 }
+
+// alert success animation
+if (document.querySelector('.js-success-alert')) {
+    setTimeout(function() {
+        let successAlert = document.querySelector('.js-success-alert');
+        successAlert.classList.remove('show');
+        successAlert.addEventListener('transitionend', function() {
+            successAlert.style.display = 'none';
+        });
+    }, 2000);
+}

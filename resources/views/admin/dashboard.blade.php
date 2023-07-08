@@ -5,7 +5,7 @@
 @section('contents')
 
     <h2 class="">
-        Benvenuto , {{ $user->name }} !
+        Welcome , {{ $user->name }} !
     </h2>
 
 @endsection

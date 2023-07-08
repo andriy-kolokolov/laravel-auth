@@ -7,7 +7,7 @@
     @if (session('delete_success'))
         @php $post = session('delete_success') @endphp
         <div class="alert alert-danger">
-            Il post "{{ $post->title }}" è stato eliminato per sempre
+            Post "{{ $post->title }}" was deleted.
             {{-- <form
                 action="{{ route("admin.posts.restore", ['post' => $post]) }}"
                     method="post"

@@ -16,7 +16,7 @@ if (confirmDelete) {
     })
 }
 
-// alert success animation
+// alert success fade out animation
 if (document.querySelector('.js-success-alert')) {
     setTimeout(function() {
         let successAlert = document.querySelector('.js-success-alert');

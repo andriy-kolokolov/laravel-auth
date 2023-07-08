@@ -1,7 +1,6 @@
-@extends('guests.layouts.base')
+@extends('auth.layouts.base')
 
 @section('contents')
-
     <form method="post" action="{{ route('login') }}">
         @csrf
 
@@ -33,15 +32,17 @@
         </div>
 
         <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="remember"  name="remember">
+            <input type="checkbox" class="form-check-input" id="remember" name="remember">
             <label class="form-check-label" for="remember">Remember me</label>
         </div>
 
         <a href="{{ route('password.request') }}">
-            Forgot your password?
+            {{ __('Forgot your password?') }}
         </a>
 
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-primary ms-3">Login</button>
     </form>
 
+
 @endsection
+

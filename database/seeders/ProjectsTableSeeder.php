@@ -18,12 +18,12 @@ class ProjectsTableSeeder extends Seeder
         DB::table('projects')->insert([
             [
                 'title' => 'boolzap',
-                'description' => 'Boolzapp - a (not very) innovative messaging platform',
+                'description' => 'Whatsup clone using VUE JS',
                 'project_url' => 'https://github.com/andriy-kolokolov/vue-boolzapp',
             ],
             [
-                'title' => 'CRUD methods and tests JAVA HIBERNATE',
-                'description' => 'DAO Pattern. Used technologies: Maven, Hibernate, JDBC.',
+                'title' => 'Java CRUD and tests',
+                'description' => 'DAO Pattern. CRUD methods and tests JAVA HIBERNATE',
                 'project_url' => 'https://github.com/andriy-kolokolov/java-hibernate-jdbc-database-manager',
             ],
             [

@@ -64,7 +64,7 @@ class ProjectsController extends Controller
         $project->save();
 
         // Process programming languages
-        $programmingLanguages = explode(',', $validatedData['programming_languages']);
+        $programmingLanguages = preg_split('/[\s,]+/', $validatedData['programming_languages']);
         foreach ($programmingLanguages as $language) {
             $projectLanguage = new ProjectProgrammingLanguage();
             $projectLanguage->project_id = $project->id;
@@ -84,8 +84,6 @@ class ProjectsController extends Controller
         }
 
         return redirect()->route('admin.projects.index')->with('success', 'Project added successfully!');
-
-
     }
 
     /**

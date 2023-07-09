@@ -1,6 +1,11 @@
 @extends('auth.layouts.base')
 
 @section('contents')
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
     <form method="post" action="{{ route('login') }}">
         @csrf
 
@@ -36,11 +41,26 @@
             <label class="form-check-label" for="remember">Remember me</label>
         </div>
 
-        <a href="{{ route('password.request') }}">
-            {{ __('Forgot your password?') }}
-        </a>
+        <div class="row g-3">
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
 
-        <button type="submit" class="btn btn-primary ms-3">Login</button>
+            <div class="col-6">
+                <a class="col-6 text-sm-center" href="{{ route('password.request') }}">
+                    {{ __('Forgot your password?') }}
+                </a>
+            </div>
+
+            <div class="col-6">
+                <a class="col-6" href="{{ route('register') }}">
+                    {{ __('No account? Register') }}
+                </a>
+            </div>
+
+        </div>
+
+
     </form>
 
 

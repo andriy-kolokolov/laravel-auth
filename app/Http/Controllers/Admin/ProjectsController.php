@@ -7,15 +7,16 @@ use App\Models\Project\Project;
 use App\Models\Project\ProjectProgrammingLanguage;
 use App\Models\Project\ProjectFramework;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class ProjectsController extends Controller
 {
     private array $validations = [
-        'title' => 'required',
-        'programming_languages' => 'required',
-        'frameworks' => 'nullable',
-        'description' => 'required',
-        'project_url' => 'required|url',
+        'title' => 'required|string|min:5|max:50',
+        'programming_languages' => 'required|string|max:500',
+        'frameworks' => 'nullable|max:500',
+        'description' => 'nullable',
+        'project_url' => 'required|url|max:600',
     ];
 
     private array $validation_messages = [
@@ -74,7 +75,7 @@ class ProjectsController extends Controller
 
         // Process frameworks if provided
         if (!empty($validatedData['frameworks'])) {
-            $frameworks = explode(',', $validatedData['frameworks']);
+            $frameworks = preg_split('/[\s,]+/', $validatedData['frameworks']);
             foreach ($frameworks as $framework) {
                 $projectFramework = new ProjectFramework();
                 $projectFramework->project_id = $project->id;
@@ -92,9 +93,9 @@ class ProjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Project $project)
     {
-        //
+        return view('admin.projects.show', compact('project'));
     }
 
     /**
@@ -103,31 +104,63 @@ class ProjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Project $project)
     {
-        //
+        return view('admin.projects.edit', compact('project'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
-        //
+        $validatedData = $request->validate($this->validations, $this->validation_messages);
+
+        // Find the project by its ID
+        $project = Project::findOrFail($id);
+        $project->title = $validatedData['title'];
+        $project->description = $validatedData['description'];
+        $project->project_url = $validatedData['project_url'];
+        $project->update();
+
+        // Process programming languages
+        $programmingLanguages = preg_split('/[\s,]+/', $validatedData['programming_languages']);
+        ProjectProgrammingLanguage::where('project_id', $project->id)->delete(); // Remove existing programming languages
+        foreach ($programmingLanguages as $language) {
+            $projectLanguage = new ProjectProgrammingLanguage();
+            $projectLanguage->project_id = $project->id;
+            $projectLanguage->programming_language = trim($language);
+            $projectLanguage->save();
+        }
+
+        // Process frameworks if provided
+        if (!empty($validatedData['frameworks'])) {
+            $frameworks = preg_split('/[\s,]+/', $validatedData['frameworks']);
+            ProjectFramework::where('project_id', $project->id)->delete(); // Remove existing frameworks
+            foreach ($frameworks as $framework) {
+                $projectFramework = new ProjectFramework();
+                $projectFramework->project_id = $project->id;
+                $projectFramework->framework = trim($framework);
+                $projectFramework->save();
+            }
+        }
+
+        return redirect()->route('admin.projects.index')->with('success', 'Project updated successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Project $project
+     * @return Response
      */
-    public function destroy($id)
+    public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        return to_route('admin.projects.index')->with('delete_success', $project);
     }
 }

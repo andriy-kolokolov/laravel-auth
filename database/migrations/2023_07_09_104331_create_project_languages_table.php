@@ -17,7 +17,7 @@ return new class extends Migration
             $table->increments('id');
 
             $table->unsignedInteger('project_id');
-            $table->string('programming_language', 100);
+            $table->string('programming_language', 500);
 
             $table->timestamps();
 

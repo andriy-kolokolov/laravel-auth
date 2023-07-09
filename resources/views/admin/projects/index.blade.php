@@ -7,7 +7,7 @@
     @if (session('delete_success'))
         @php $project = session('delete_success') @endphp
         <div class="alert alert-danger">
-            Post "{{ $project->title }}" was deleted.
+            Project "{{ $project->title }}" was deleted.
             {{-- <form
                 action="{{ route("admin.posts.restore", ['post' => $post]) }}"
                     method="post"
@@ -26,14 +26,14 @@
         </div>
     @endif --}}
 
-    <table class="table table-bordered">
+    <table class="table table-bordered table-hover table-rounded">
         <thead>
         <tr>
-            <th>Title</th>
-            <th>Programming Languages</th>
-            <th>Frameworks</th>
-            <th>Description</th>
-            <th>Project URL</th>
+            <th class="col">Title</th>
+            <th class="col">Programming Languages</th>
+            <th class="col">Frameworks</th>
+            <th class="col-2">Description</th>
+            <th class="col">Project URL</th>
         </tr>
         </thead>
         <tbody>
@@ -51,7 +51,15 @@
                     @endforeach
                 </td>
                 <td>{{ $project->description }}</td>
-                <td><a href="{{ $project->project_url }}" target="_blank">{{ $project->project_url }}</a></td>
+                <td><a href="{{ $project->project_url }}" target="_blank">Show on GitHub</a></td>
+                <!--    CRUD ACTIONS     -->
+                <td>
+                    <a href="{{ route('admin.projects.show', ['project' => $project->id]) }}" class="btn btn-success btn-sm fs-6">View</a>
+                    <a href="{{ route('admin.projects.edit', ['project' => $project->id]) }}" class="btn btn-primary btn-sm fs-6">Edit</a>
+                    <button type="button" class="btn btn-danger js-delete" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $project->id }}">
+                        Delete
+                    </button>
+                </td>
             </tr>
         @endforeach
         </tbody>

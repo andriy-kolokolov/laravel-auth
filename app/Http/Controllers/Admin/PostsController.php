@@ -88,9 +88,6 @@ class PostsController extends Controller
     public function edit(Post $post)
     {
         return view('admin.posts.edit', compact('post'));
-        // return view('admin.posts.edit', [
-        //     'post' => $post,
-        // ]);
     }
 
     /**
@@ -102,7 +99,7 @@ class PostsController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        // validare i dati del form
+        // validate form data
         $request->validate($this->validations, $this->validation_messages);
 
         $data = $request->all();

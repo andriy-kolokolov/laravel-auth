@@ -17,8 +17,8 @@ return new class extends Migration
             $table->increments('id');
 
             $table->string('title', 50);
-            $table->text('description');
-            $table->string('project_url', 500);
+            $table->text('description')->nullable();
+            $table->string('project_url', 600);
 
             $table->timestamps();
         });

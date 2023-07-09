@@ -2,7 +2,7 @@
 
 @section('contents')
 
-    <h1>Posts</h1>
+    <h1>Projects</h1>
 
     @if (session('delete_success'))
         @php $project = session('delete_success') @endphp
@@ -71,7 +71,7 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
                     <form
                         action=""
-{{--                        data-template="{{ route('admin.posts.destroy', ['post' => '*****']) }}"--}}
+                        data-template="{{ route('admin.projects.destroy', ['project' => '*****']) }}"
                         method="post"
                         class="d-inline-block"
                         id="confirm-delete"

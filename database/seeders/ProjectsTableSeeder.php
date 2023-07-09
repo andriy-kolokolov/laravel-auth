@@ -53,15 +53,7 @@ class ProjectsTableSeeder extends Seeder
             ],
             [
                 'project_id' => 3,
-                'programming_language' => 'JS',
-            ],
-            [
-                'project_id' => 3,
-                'programming_language' => 'HTML',
-            ],
-            [
-                'project_id' => 3,
-                'programming_language' => 'SASS',
+                'programming_language' => 'Java',
             ],
         ]);
 

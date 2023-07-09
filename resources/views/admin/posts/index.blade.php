@@ -2,7 +2,7 @@
 
 @section('contents')
 
-    <h1>Posts</h1>
+    <h1>Projects</h1>
 
     @if (session('delete_success'))
         @php $post = session('delete_success') @endphp

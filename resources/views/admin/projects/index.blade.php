@@ -26,32 +26,34 @@
         </div>
     @endif --}}
 
-    <table class="table table-striped table-hover">
+    <table class="table table-bordered">
         <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Title</th>
-                <th scope="col">Description</th>
-                <th scope="col">Project url</th>
-                <th scope="col">Actions</th>
-            </tr>
+        <tr>
+            <th>Title</th>
+            <th>Programming Languages</th>
+            <th>Frameworks</th>
+            <th>Description</th>
+            <th>Project URL</th>
+        </tr>
         </thead>
         <tbody>
-            @foreach ($projects as $project)
-                <tr>
-                    <th scope="row">{{ $project->id }}</th>
-                    <td>{{ $project->title }}</td>
-                    <td>{{ $project->description }}</td>
-                    <td><a href="{{ $project->project_url }}">{{ $project->project_url }}</a></td>
-                    <td>
-{{--                        <a class="btn btn-primary" href="{{ route('admin.posts.show', ['post' => $post]) }}">View</a>--}}
-{{--                        <a class="btn btn-warning" href="{{ route('admin.posts.edit', ['post' => $post]) }}">Edit</a>--}}
-{{--                        <button type="button" class="btn btn-danger js-delete" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $post->id }}">--}}
-{{--                            Delete--}}
-{{--                        </button>--}}
-                    </td>
-                </tr>
-            @endforeach
+        @foreach($projects as $project)
+            <tr>
+                <td>{{ $project->title }}</td>
+                <td>
+                    @foreach($project->languages as $language)
+                        {{ $language->programming_language }}<br>
+                    @endforeach
+                </td>
+                <td>
+                    @foreach($project->frameworks as $framework)
+                        {{ $framework->framework }}<br>
+                    @endforeach
+                </td>
+                <td>{{ $project->description }}</td>
+                <td><a href="{{ $project->project_url }}" target="_blank">{{ $project->project_url }}</a></td>
+            </tr>
+        @endforeach
         </tbody>
     </table>
 

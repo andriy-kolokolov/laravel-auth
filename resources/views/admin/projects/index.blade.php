@@ -42,7 +42,7 @@
                     <th scope="row">{{ $project->id }}</th>
                     <td>{{ $project->title }}</td>
                     <td>{{ $project->description }}</td>
-                    <td>{{ $project->project_url }}</td>
+                    <td><a href="{{ $project->project_url }}">{{ $project->project_url }}</a></td>
                     <td>
 {{--                        <a class="btn btn-primary" href="{{ route('admin.posts.show', ['post' => $post]) }}">View</a>--}}
 {{--                        <a class="btn btn-warning" href="{{ route('admin.posts.edit', ['post' => $post]) }}">Edit</a>--}}

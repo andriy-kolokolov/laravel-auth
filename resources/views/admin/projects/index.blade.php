@@ -43,10 +43,7 @@
             <tr>
                 <td>{{ $project->title }}</td>
                 <td>
-{{--                    {{ $project->programmingLanguage }}--}}
-                    @foreach($project->projectsProgrammingLanguages as $language)
-                        {{ $language->programming_language }}<br>
-                    @endforeach
+                    {{ $project->programmingLanguages->pluck('programming_language')->implode(', ') }}
                 </td>
                 <td>
                     @foreach($project->frameworks as $framework)

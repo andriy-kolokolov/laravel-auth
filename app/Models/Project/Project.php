@@ -10,7 +10,7 @@ class Project extends Model
 {
     use HasFactory;
 
-    public function projectsProgrammingLanguages(): BelongsToMany {
+    public function programmingLanguages(): BelongsToMany {
         return $this->belongsToMany(ProjectsProgrammingLanguage::class, 'project_language', 'project_id', 'language_id');
     }
 
@@ -20,11 +20,11 @@ class Project extends Model
     }
 
     // Define the relationship with languages
-    public function languages()
-    {
-        return $this->belongsToMany(ProjectsProgrammingLanguage::class, 'projects_programming_languages');
-//        return $this->belongsToMany(ProjectsProgrammingLanguage::class, 'project_language', 'project_id', 'language_id');
-    }
+//    public function languages()
+//    {
+//        return $this->belongsToMany(ProjectsProgrammingLanguage::class, 'projects_programming_languages');
+////        return $this->belongsToMany(ProjectsProgrammingLanguage::class, 'project_language', 'project_id', 'language_id');
+//    }
 
     // Define the relationship with frameworks
     public function frameworks()

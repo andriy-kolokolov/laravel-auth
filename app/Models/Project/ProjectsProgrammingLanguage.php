@@ -9,5 +9,8 @@ class ProjectsProgrammingLanguage extends Model
 {
 
     protected $table = 'projects_programming_languages';
+
+    protected $fillable = ['project_id', 'programming_language'];
+
     use HasFactory;
 }

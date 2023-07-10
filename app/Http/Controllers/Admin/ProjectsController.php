@@ -56,8 +56,8 @@ class ProjectsController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate($this->validations, $this->validation_messages);
-        // Create a new project instance and fill it with the validated data
 
+        // Create a new project instance and fill it with the validated data
         $project = new Project();
         $project->title = $validatedData['title'];
         $project->description = $validatedData['description'];
@@ -66,12 +66,12 @@ class ProjectsController extends Controller
 
         // Process programming languages
         $programmingLanguages = preg_split('/[\s,]+/', $validatedData['programming_languages']);
+        $programmingLanguageIds = [];
         foreach ($programmingLanguages as $language) {
-            $projectLanguage = new ProjectsProgrammingLanguage();
-            $projectLanguage->project_id = $project->id;
-            $projectLanguage->programming_language = trim($language);
-            $projectLanguage->save();
+            $programmingLanguage = ProjectsProgrammingLanguage::firstOrCreate(['programming_language' => trim($language)]);
+            $programmingLanguageIds[] = $programmingLanguage->id;
         }
+        $project->programmingLanguages()->sync($programmingLanguageIds);
 
         // Process frameworks if provided
         if (!empty($validatedData['frameworks'])) {
@@ -83,7 +83,6 @@ class ProjectsController extends Controller
                 $projectFramework->save();
             }
         }
-
         return redirect()->route('admin.projects.index')->with('success', 'Project added successfully!');
     }
 
@@ -129,12 +128,12 @@ class ProjectsController extends Controller
 
         // Process programming languages
         $programmingLanguages = preg_split('/[\s,]+/', $validatedData['programming_languages']);
-        ProjectsProgrammingLanguage::where('project_id', $project->id)->delete(); // Remove existing programming languages
+        // Remove existing programming languages for the project
+        $project->programmingLanguages()->detach();
+        // Add the new programming languages for the project
         foreach ($programmingLanguages as $language) {
-            $projectLanguage = new ProjectsProgrammingLanguage();
-            $projectLanguage->project_id = $project->id;
-            $projectLanguage->programming_language = trim($language);
-            $projectLanguage->save();
+            $programmingLanguage = ProjectsProgrammingLanguage::firstOrCreate(['programming_language' => trim($language)]);
+            $project->programmingLanguages()->attach($programmingLanguage->id);
         }
 
         // Process frameworks if provided

@@ -13,18 +13,23 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('project_frameworks', function (Blueprint $table) {
+        Schema::create('project_language', function (Blueprint $table) {
             $table->increments('id');
 
             $table->unsignedInteger('project_id');
-            $table->string('framework', 500)->nullable();
-
-            $table->timestamps();
-
             $table->foreign('project_id')
                 ->references('id')
                 ->on('projects')
                 ->onDelete('cascade');
+
+            $table->unsignedInteger('language_id');
+            $table->foreign('language_id')
+                ->references('id')
+                ->on('projects_programming_languages')
+                ->onDelete('cascade');
+
+            $table->timestamps();
+
         });
     }
 
@@ -35,6 +40,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('project_frameworks');
+        Schema::dropIfExists('project_language');
     }
 };

@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('project_programming_languages', function (Blueprint $table) {
+        Schema::create('projects_frameworks', function (Blueprint $table) {
             $table->increments('id');
 
             $table->unsignedInteger('project_id');
-            $table->string('programming_language', 500);
+            $table->string('framework', 500)->nullable();
 
             $table->timestamps();
 
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('project_languages');
+        Schema::dropIfExists('projects_frameworks');
     }
 };

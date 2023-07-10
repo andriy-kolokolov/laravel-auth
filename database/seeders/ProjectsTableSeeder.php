@@ -34,31 +34,26 @@ class ProjectsTableSeeder extends Seeder
         ]);
 
         // Seed project_languages table
-        DB::table('project_programming_languages')->insert([
+        DB::table('projects_programming_languages')->insert([
             [
-                'project_id' => 1,
                 'programming_language' => 'JS',
             ],
             [
-                'project_id' => 1,
                 'programming_language' => 'HTML',
             ],
             [
-                'project_id' => 1,
                 'programming_language' => 'SASS',
             ],
             [
-                'project_id' => 2,
                 'programming_language' => 'Java',
             ],
             [
-                'project_id' => 3,
                 'programming_language' => 'Java',
             ],
         ]);
 
         // Seed project_frameworks table
-        DB::table('project_frameworks')->insert([
+        DB::table('projects_frameworks')->insert([
             [
                 'project_id' => 1,
                 'framework' => 'Vue.js',

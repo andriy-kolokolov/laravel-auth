@@ -4,10 +4,15 @@ namespace App\Models\Project;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Project extends Model
 {
     use HasFactory;
+
+    public function projectsProgrammingLanguages(): BelongsToMany {
+        return $this->belongsToMany(ProjectsProgrammingLanguage::class, 'project_language', 'project_id', 'language_id');
+    }
 
     public function index() {
         $projects = Project::with('languages', 'frameworks')->get();
@@ -17,7 +22,8 @@ class Project extends Model
     // Define the relationship with languages
     public function languages()
     {
-        return $this->hasMany(ProjectProgrammingLanguage::class);
+        return $this->belongsToMany(ProjectsProgrammingLanguage::class, 'projects_programming_languages');
+//        return $this->belongsToMany(ProjectsProgrammingLanguage::class, 'project_language', 'project_id', 'language_id');
     }
 
     // Define the relationship with frameworks

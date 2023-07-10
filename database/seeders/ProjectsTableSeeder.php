@@ -71,6 +71,29 @@ class ProjectsTableSeeder extends Seeder
                 'framework' => 'JDBC',
             ],
         ]);
+
+        DB::table('project_language')->insert([
+            [
+                'project_id' => 1,
+                'language_id' => 1,
+            ],
+            [
+                'project_id' => 1,
+                'language_id' => 2,
+            ],
+            [
+                'project_id' => 1,
+                'language_id' => 3,
+            ],
+            [
+                'project_id' => 2,
+                'language_id' => 4,
+            ],
+            [
+                'project_id' => 3,
+                'language_id' => 4,
+            ],
+        ]);
 //        $projects = [
 //            [
 //                'title' => 'boolzap',

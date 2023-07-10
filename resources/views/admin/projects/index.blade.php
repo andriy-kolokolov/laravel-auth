@@ -1,7 +1,9 @@
 @extends('admin.layouts.base')
 
 @section('contents')
-
+@php
+//dd($projects);
+@endphp
     <h1>Projects</h1>
 
     @if (session('delete_success'))
@@ -41,7 +43,8 @@
             <tr>
                 <td>{{ $project->title }}</td>
                 <td>
-                    @foreach($project->languages as $language)
+{{--                    {{ $project->programmingLanguage }}--}}
+                    @foreach($project->projectsProgrammingLanguages as $language)
                         {{ $language->programming_language }}<br>
                     @endforeach
                 </td>

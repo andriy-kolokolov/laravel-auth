@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project\Project;
-use App\Models\Project\ProjectProgrammingLanguage;
+use App\Models\Project\ProjectsProgrammingLanguage;
 use App\Models\Project\ProjectFramework;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -67,7 +67,7 @@ class ProjectsController extends Controller
         // Process programming languages
         $programmingLanguages = preg_split('/[\s,]+/', $validatedData['programming_languages']);
         foreach ($programmingLanguages as $language) {
-            $projectLanguage = new ProjectProgrammingLanguage();
+            $projectLanguage = new ProjectsProgrammingLanguage();
             $projectLanguage->project_id = $project->id;
             $projectLanguage->programming_language = trim($language);
             $projectLanguage->save();
@@ -129,9 +129,9 @@ class ProjectsController extends Controller
 
         // Process programming languages
         $programmingLanguages = preg_split('/[\s,]+/', $validatedData['programming_languages']);
-        ProjectProgrammingLanguage::where('project_id', $project->id)->delete(); // Remove existing programming languages
+        ProjectsProgrammingLanguage::where('project_id', $project->id)->delete(); // Remove existing programming languages
         foreach ($programmingLanguages as $language) {
-            $projectLanguage = new ProjectProgrammingLanguage();
+            $projectLanguage = new ProjectsProgrammingLanguage();
             $projectLanguage->project_id = $project->id;
             $projectLanguage->programming_language = trim($language);
             $projectLanguage->save();

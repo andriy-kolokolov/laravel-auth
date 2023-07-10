@@ -18,7 +18,7 @@
                     </div>
                     <div class="mb-4">
                         <strong>Programming Languages:</strong>
-                        {{ implode(', ', $project->languages()->pluck('programming_language')->toArray()) }}
+                        {{ implode(', ', $project->programmingLanguages->pluck('programming_language')->toArray()) }}
                     </div>
                     <div class="mb-4">
                         <strong>Frameworks:</strong>

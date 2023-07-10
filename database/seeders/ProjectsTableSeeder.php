@@ -23,7 +23,7 @@ class ProjectsTableSeeder extends Seeder
             ],
             [
                 'title' => 'Java CRUD and tests',
-                'description' => 'DAO Pattern. CRUD methods and tests JAVA HIBERNATE',
+                'description' => 'Used DAO (Data Access Object) Pattern. CRUD methods and tests JAVA HIBERNATE',
                 'project_url' => 'https://github.com/andriy-kolokolov/java-hibernate-jdbc-database-manager',
             ],
             [
@@ -31,9 +31,14 @@ class ProjectsTableSeeder extends Seeder
                 'description' => 'Just a simple Roman calculator using a hashmap to convert an integer to a Roman numeral. Inspired to create it after completing the LeetCode task "https://leetcode.com/problems/roman-to-integer/"',
                 'project_url' => 'https://github.com/andriy-kolokolov/java-roman-calculator',
             ],
+            [
+                'title' => 'Todo List Teamwork',
+                'description' => 'This project focuses on teamwork and GIT version control. This is a Simple Todo List manager. ',
+                'project_url' => 'https://github.com/alessandropecchini99/laravel-boolean',
+            ],
         ]);
 
-        // Seed project_languages table
+        // Seed project_programming_languages table
         DB::table('projects_programming_languages')->insert([
             [
                 'programming_language' => 'JS',
@@ -49,6 +54,12 @@ class ProjectsTableSeeder extends Seeder
             ],
             [
                 'programming_language' => 'Java',
+            ],
+            [
+                'programming_language' => 'Blade',
+            ],
+            [
+                'programming_language' => 'PHP',
             ],
         ]);
 
@@ -70,33 +81,46 @@ class ProjectsTableSeeder extends Seeder
                 'project_id' => 2,
                 'framework' => 'JDBC',
             ],
+            [
+                'project_id' => 4,
+                'framework' => 'Laravel',
+            ],
+            [
+                'project_id' => 4,
+                'framework' => 'Bootstrap',
+            ],
         ]);
-//        $projects = [
-//            [
-//                'title' => 'boolzap',
-//                'programming_languages' => ['JS', 'HTML', 'SASS'],
-//                'frameworks' => ['Vue.js'],
-//                'description' => 'Boolzapp - a (not very) innovative messaging platform',
-//                'project_url' => 'https://github.com/andriy-kolokolov/vue-boolzapp',
-//            ],
-//            [
-//                'title' => 'CRUD methods and tests JAVA HIBERNATE',
-//                'programming_languages' => ['Java'],
-//                'frameworks' => ['Hibernate', 'Maven', 'JDBC'],
-//                'description' => 'DAO Pattern. Used technologies: Maven, Hibernate, JDBC.',
-//                'project_url' => 'https://github.com/andriy-kolokolov/java-hibernate-jdbc-database-manager',
-//            ],
-//            [
-//                'title' => 'Java Roman Calculator',
-//                'programming_languages' => ['JS', 'HTML', 'SASS'],
-//                'frameworks' => [],
-//                'description' => 'Just a simple Roman calculator using a hashmap to convert an integer to a Roman numeral. Inspired to create it after completing the LeetCode task "https://leetcode.com/problems/roman-to-integer/"',
-//                'project_url' => 'https://github.com/andriy-kolokolov/java-roman-calculator',
-//            ],
-//        ];
-//        foreach ($projects as $project) {
-//            Project::create($project);
-//        }
 
+        // Seed relational table 'project_language'
+        DB::table('project_language')->insert([
+            [
+                'project_id' => 1,
+                'language_id' => 1,
+            ],
+            [
+                'project_id' => 1,
+                'language_id' => 2,
+            ],
+            [
+                'project_id' => 1,
+                'language_id' => 3,
+            ],
+            [
+                'project_id' => 2,
+                'language_id' => 4,
+            ],
+            [
+                'project_id' => 3,
+                'language_id' => 4,
+            ],
+            [
+                'project_id' => 4,
+                'language_id' => 6,
+            ],
+            [
+                'project_id' => 4,
+                'language_id' => 7,
+            ],
+        ]);
     }
 }

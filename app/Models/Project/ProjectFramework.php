@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProjectFramework extends Model
 {
     use HasFactory;
+
+    // Set the table name explicitly TO DISABLE DEFAULT PLURALIZATION
+    protected $table = 'projects_frameworks';
 }

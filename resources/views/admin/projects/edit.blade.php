@@ -49,7 +49,7 @@
                             <label for="programming_languages">Programming Languages</label>
                             <input type="text" name="programming_languages" id="programming_languages"
                                    class="form-control"
-                                   value="{{ implode(', ', $project->languages()->pluck('programming_language')->toArray()) }}"
+                                   value="{{ implode(', ', $project->programmingLanguages()->pluck('programming_language')->toArray()) }}"
                                    required>
                             @error('programming_languages')
                                 <div class="text-danger">
